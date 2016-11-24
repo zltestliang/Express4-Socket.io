@@ -1,0 +1,139 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+ul {
+    list-style: none;
+}
+.chat-item{
+    margin-top: 20px;
+    margin-bottom: 22px;
+    margin-left: 10px;
+}
+.chat-profile-info{
+    min-height: 21px;
+}
+.avatar{
+    float: left;
+    margin-left: 0px;
+    margin-right: 7px;
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    overflow: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    box-sizing: border-box;
+    background-size: cover;
+    background-clip: content-box;
+    border-radius: 50%;
+}
+.user-avatar{
+    width: 38px;
+    height: 38px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    display: inline-block;
+    box-sizing: border-box;
+    background-size: cover;
+    background-clip: content-box;
+    border-radius: 50%;
+}
+.chat-profile-info .name{
+    padding-left: 45px;
+    color: #8e97a1;
+    font-size: 12px
+}
+.msg-bubble-box{
+    float: left;
+    width: 70%;
+}
+.clearfix:after{
+    clear: both;
+    display: block;
+    content: "";
+}
+.msg-bubble-area{
+    min-height: 21px;
+    padding: 5px 11px;
+    border: 1px solid #e1e0e4;
+    border-radius: 6px;
+    background-color: #fff;
+    line-height: 21px;
+    overflow: hidden;
+    word-wrap: break-word;
+    -webkit-transition: background-color 0.25s ease;
+    -moz-transition: background-color 0.25s ease;
+    transition: background-color 0.25s ease;
+}
+.send-box{
+    margin: auto;
+    width:700px
+}
+.input pre{
+    
+    height: 80px;
+    width: 694px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    outline: 0;
+    border: 1px solid #343434;
+    font-size: 14px;
+    
+}
+.chat-title{
+    background: url(../images/chat_title_bg.jpg) repeat-x 0 0;
+    height: 25px;
+    position: relative;
+}
+.chat_face_btn{
+    background: url(../images/icon.png) no-repeat 0 0;
+    background-position: 0 -90px;
+    margin-left: 18px;
+    cursor: pointer;
+    float: left;
+    display: block;
+    width: 15px;
+    height: 15px;
+    margin: 5px 6px;
+}
+.wl_faces_box{
+    background: url(../images/wlf_bg.png) repeat 0 0;
+    position: absolute;
+    width: 360px;
+    height: 151px;
+    bottom: 30px;
+    left: -5px;
+    display: none;
+   
+}
+.wl_faces_main{
+    background: #fff;
+    border: 1px #ccc solid;
+    width: 360px;
+    height: 151px;
+    margin: 3px 4px;
+}
+.wl_faces_main ul {
+    overflow: hidden;
+    border-top: 1px #CCC solid;
+    border-left: 1px #CCC solid;
+    width: 360px;
+}
+.wl_faces_main ul li {
+    float: left;
+    border-right: 1px #CCC solid;
+    border-bottom: 1px #CCC solid;
+    height: 22px;
+    width: 26px;
+    margin: -1px 0 0 -1px;
+    padding: 4px 2px;
+    text-align: center;
+}

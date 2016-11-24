@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="socket.io-1.4.5.js"></script>
+        <script src="vender/angular1.5.8/angular.min.js"></script>
+        <script src="vender/angular1.5.8/angular-route.min.js"></script>
+        <script src="vender/jquery-3.1.0.min.js"></script>
+        <script src="app.js"></script>
+        <script src="js/chat.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="appCtrl">
+        <div ng-show="!loginState" id="loginbox">
+            <div style="width:260px;margin:200px auto;">
+                请先输入你在聊天室的昵称
+                <br/>
+                <br/>
+                <input type="text" style="width:180px;" placeholder="请输入用户名" id="username" name="username" ng-model="name"/>
+				<input type="button" style="width:50px;" value="提交" ng-click="usernameSubmit();"/>
+            </div>
+        </div>
+        <div style="width:700px;height:600px;overflow: hidden;border:1px solid black;margin:auto" ng-show="loginState">
+            <div style="background:#3d3d3d;height: 28px; width: 100%;font-size:12px;">
+                <div style="line-height: 28px;color:#fff;">
+                    <span style="text-align:left;margin-left:10px;">局域网多人聊天室</span>
+                    <span style="float:right; margin-right:10px;">当前在线人数:{{count}}</span>
+                    <span style="float:right; margin-right:10px;"><span id="showusername">欢迎:{{name}}</span>
+					<!--<a href="javascript:;" ng-click="logout()" style="color:#fff;">退出</a></span>-->
+                </div>
+            </div>
+            <div style="width:700px;height:570px;overflow: auto" id="chatArea">
+                <div class="chat-item" ng-repeat="x in msglist">
+                    <div class="chat-profile-info">
+                        <span class="name">{{x.name}}</span>
+                    </div>
+                    <div class="clearfix">
+                        <div class="avatar" style="{{x.style}}">
+                        </div>
+                        <div class="msg-bubble-box">
+                            <pre class="msg-bubble-area" ng-bind-html="x.msg|htmlContent">
+                                {{}}
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="send-box" ng-show="loginState">
+                <div class="chat-title">
+                    <a class="chat_face_btn" href="javascript:void(0)"></a>
+                    <div class="wl_faces_box" >
+                    <div class="wl_faces_main">
+                         <ul>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_01.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_02.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_03.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_04.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_05.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_06.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_07.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_08.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_09.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_10.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_11.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_12.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_13.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_14.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_15.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_16.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_17.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_18.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_19.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_20.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_21.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_22.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_23.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_24.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_25.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_26.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_27.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_28.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_29.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_30.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_31.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_32.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_33.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_34.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_35.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_36.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_37.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_38.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_39.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_40.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_41.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_42.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_43.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_44.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_45.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_46.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_47.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_48.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_49.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_50.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_51.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_52.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_53.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_54.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_55.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_56.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_57.gif" /></a></li>
+                                        <li><a href="javascript:;">
+                                            <img src="images/emo_58.gif" /></a></li><li><a href="javascript:;">
+                                                <img src="images/emo_59.gif" /></a></li><li><a href="javascript:;">
+                                                    <img src="images/emo_60.gif" /></a></li>
+                                    </ul>
+                    </div>
+                </div>
+                </div>
+               
+                <div class="input-box">
+                    <div class="input">
+                        <pre placeholder="请输入聊天内容，按Ctrl提交" contenteditable="true" id="editArea" >{{sendmsg}}</pre>
+                    </div>
+                    <div class="action">
+                        <button type="button" id="mjr_send" ng-click="onSendmsg()">发送</button>
+                    </div>
+                </div>
+        </div>
+    </body>
+</html>
